@@ -1,0 +1,22 @@
+PLACEHOLDER
+===========
+
+A jQuery plugin that adds placeholder() and serializeWithoutPlaceholders()
+methods. This manages the placeholder value text and adds/removes a class from
+an input element so that you can style and use placeholder text across
+different browsers.
+
+
+USAGE
+=====
+
+<input type="text" name="someinput" placeholder="placeholder text" value="">
+
+<style>
+input[type=text] {font-size: 14px; color: #333;}
+input.placeholder {font-size: 12px; color: #ccc;}
+</style>
+
+<script>
+$('input[name=someinput]').placeholder();
+</script>
