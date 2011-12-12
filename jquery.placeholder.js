@@ -26,6 +26,12 @@ $.fn.placeholder = function(settings) {
         }
     }
 
+    function keyup(event) {
+        if (event.keyCode == 13) {
+            $(this).blur();
+        }
+    }
+
     if (settings == "destroy") {
         this.unbind('focus', focus);
         this.unbind('blur', blur);
@@ -56,6 +62,9 @@ $.fn.placeholder = function(settings) {
         if (!$(this).attr('placeholder')) {
             return;
         }
+        if ($(this).data('placeholderinitialized')) {
+            return;
+        }
         // store the placeholder values as data
         $.data(this, options.key, $(this).attr(options.attr));
         var v = $.trim($(this).val());
@@ -68,7 +77,7 @@ $.fn.placeholder = function(settings) {
             // in because the user pressed the back button. So just clear it.
             $(this).val('');
         }
-        $(this).focus(focus).blur(blur)
+        $(this).focus(focus).blur(blur).keyup(keyup).data('placeholderinitialized', true);
     });
 };
 $.fn.serializeWithoutPlaceholders = function() {
